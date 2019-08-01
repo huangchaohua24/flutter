@@ -1,0 +1,46 @@
+3.Widget的状态分类
+在Android中，我们可以通过直接更改View来更新视图。但是在Flutter中，Widget是不可变的并且不会直接更新，而是必须使用Widget的状态。
+Widget有两种状态分类分别是无状态的StatelessWidget和有状态的StatefulWidget，StatelessWidget是不可变的，设置以后就不可再变化，所有的值都是最终的设置。StatefulWidget可以保存自己的状态，但是Widget是不可变的，因此需要配合State来保存状态。
+State拥有自己的声明周期，如下所示：
+
+名称	状态
+initState	create之后被insert到渲染树时调用的，只会调用一次
+didChangeDependencies	state依赖的对象发生变化时调用
+didUpdateWidget	Widget状态改变时候调用，可能会调用多次
+build	构建Widget时调用
+deactivate	当移除渲染树的时调用
+dispose	Widget即将销毁时调用
+
+5.Basics Widget
+Basics Widget也就是Basics，主要有以下几种：
+
+Container：一个便利的容器Widget，可以设置Widget的背景、尺寸、定位。
+Row：在水平方向上布置子窗口Widget列表。
+Column：在垂直方向上布置子窗口Widge列表。
+Image：显示图像的Widget
+Text：单一样式的文本。
+Icon：符合Material Design设计规范的图标
+RaisedButton：符合Material Design设计规范的凸起按钮。
+Scaffold：实现Basics 的Material Design布局结构。
+Appbar：Material Design的应用栏。
+FlutterLogo：以Widget形式来展示一个Flutter图标，可以调整样式。
+Placeholder：绘制一个框，为将来添加的Widget的占位。
+这里选择一些我们必须要掌握的Basics Widget来进行讲解。
+
+
+5.3 图片
+Image的构造函数有多种：
+
+new Image：从ImageProvider获取图片
+new Image.asset：使用key从AssetBundle获取图片
+new Image.network：加载网络图片
+new Image.file：从文件中获取图片
+new Image.memory：用于从Uint8List获取图片
+
+child: Image.network(
+            "https://upload-images.jianshu.io/upload_images/1417629-53f7d0902457cbe6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+            width: 260,
+            height: 100,
+            fit: BoxFit.fill,
+          ),
+
