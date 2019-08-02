@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('ListView示例'),
+        ),
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.access_time),
+              title: Text('第1行'),
+            ),
+            ListTile(
+              leading: Icon(Icons.access_time),
+              title: Text('第2行'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+==========================================
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp(
+      items: new List<String>.generate(300, (i) => "第$i行"), //1
+    ));
+
+class MyApp extends StatelessWidget {
+  final List<String> items;
+
+  MyApp({@required this.items});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('ListView示例'),
+        ),
+        body: ListView.builder( //2
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: Icon(Icons.access_time),
+              title: Text('${items[index]}'),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+=============================================
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp(
+      items: new List<String>.generate(300, (i) => "第$i行"), 
+    ));
+
+class MyApp extends StatelessWidget {
+  final List<String> items;
+
+  MyApp({@required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Test',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('ListView示例'),
+        ),
+        body: ListView.separated(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: Icon(Icons.access_time),
+              title: Text('${items[index]}'),
+            );
+          },
+          separatorBuilder: (context, index) {//1
+            return Container(
+              constraints: BoxConstraints.tightFor(height: 1),
+              color: Colors.black45,
+            );
+          },
+        ),
+      ),
+    );
+  }
+}

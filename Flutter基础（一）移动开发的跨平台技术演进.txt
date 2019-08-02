@@ -44,3 +44,10 @@ child: Image.network(
             fit: BoxFit.fill,
           ),
 
+Scaffold的属性有很多，例子中用了几个属性：
+
+appBar：用于设置顶部的标题栏。
+body：显示Scaffold的主要内容。
+bottomNavigationBar：用于设置Scaffold的底部导航栏，
+drawer：用于设置抽屉效果。
+floatingActionButton：用于设置位于右下角的按钮。
